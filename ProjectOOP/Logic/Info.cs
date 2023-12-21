@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjectOOP.Enums;
+using ProjectOOP.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +8,23 @@ using System.Threading.Tasks;
 
 namespace ProjectOOP.Logic
 {
-    public class Info
+    public class Info: IString
     {
-        public int Result {  get; set; }
-        public Info(List<Player> players)
+        List<Player> Players;
+        List<Cards> Deck;
+        public Info(List<Player> players, List<Cards> deck)
         {
-            throw new NotImplementedException();
+            Players = players;
+            Deck = deck;
         }
         public override string ToString()
         {
-            return $"{Result}";
+            string result = string.Empty;
+            foreach (Player p in Players)
+            {
+                result += p.ToString();
+            }
+            return $"{result}\n\nDeck: {Deck.Count}";
         }
     }
 }

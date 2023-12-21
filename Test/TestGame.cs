@@ -7,65 +7,68 @@ namespace Test
         [TestMethod]
         public void TestListLower()
         {
+            Deck deck = new Deck();
             List<Player> list = new List<Player>();
-            {
-                Player player1 = new Player(1, 6);
-            };
-            Game game = new Game(1, list);
-            Assert.ThrowsException<ArgumentException>(() => game);
+            list.Add(new Player(1, 6, deck.deck));
+            Game game = new Game(1, list, deck);
+            int expected = 0;
+            int actual = game.Count;
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestListUpper()
         {
+            Deck deck = new Deck();
             List<Player> list = new List<Player>();
-            {
-                Player player1 = new Player(1, 6);
-                Player player2 = new Player(2, 6);
-                Player player3 = new Player(3, 6);
-                Player player4 = new Player(4, 6);
-                Player player5 = new Player(5, 6);
-                Player player6 = new Player(6, 6);
-                Player player7 = new Player(7, 6);
-            };
-            Game game = new Game(1, list);
-            Assert.ThrowsException<ArgumentException>(() => game);
+            list.Add(new Player(1, 6, deck.deck));
+            list.Add(new Player(2, 6, deck.deck));
+            list.Add(new Player(3, 6, deck.deck));
+            list.Add(new Player(4, 6, deck.deck));
+            list.Add(new Player(5, 6, deck.deck));
+            list.Add(new Player(6, 6, deck.deck));
+            list.Add(new Player(7, 6, deck.deck));
+            Game game = new Game(1, list, deck);
+            int expected = 0;
+            int actual = game.Count;
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestListNormal()
         {
+            Deck deck = new Deck();
             List<Player> list = new List<Player>();
-            {
-                Player player1 = new Player(1, 6);
-                Player player2 = new Player(2, 6);
-            };
-            Game game = new Game(1, list);
+            list.Add(new Player(1, 6, deck.deck));
+            list.Add(new Player(2, 6, deck.deck));
+            Game game = new Game(1, list, deck);
             int expected = 2;
             int actual = game.Count;
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestIdLower()
         {
+            Deck deck = new Deck();
             List<Player> list = new List<Player>();
-            {
-                Player player1 = new Player(1, 6);
-                Player player2 = new Player(2, 6);
-            };
-            Game game = new Game(-1, list);
-            Assert.ThrowsException<ArgumentException>(() => game);
+            list.Add(new Player(1, 6, deck.deck));
+            list.Add(new Player(2, 6, deck.deck));
+            Game game = new Game(-1, list, deck);
+            int expected = 1;
+            int actual = game.Id;
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestIdNormal()
         {
+            Deck deck = new Deck();
             List<Player> list = new List<Player>();
             {
-                Player player1 = new Player(1, 6);
-                Player player2 = new Player(2, 6);
+                list.Add(new Player(1, 6, deck.deck));
+                list.Add(new Player(2, 6, deck.deck));
             };
-            Game game = new Game(1, list);
+            Game game = new Game(1, list, deck);
             int expected = 1;
             int actual = game.Id;
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

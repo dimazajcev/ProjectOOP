@@ -8,14 +8,30 @@ using ProjectOOP.Interfaces;
 
 namespace ProjectOOP.Logic
 {
-    public class Player: IPlayer
+    public class Player: Characteristics, IString
     {
         public int Id { get; set; }
         public int Count { get; set; }
-        public List<Cards> Cards { get; set; }
-        public Player(int id, int cards) 
+        public List<Cards> list { get; set; }
+        public Player(int id, int cards, List<Cards> deck) 
         {
-            throw new NotImplementedException();
+            if (id > 0) 
+                Id = id; 
+            if (cards > 0 && cards < 36)
+            {
+                Count = cards;
+                Playercards playercards = new Playercards(cards, deck);
+                list = playercards.Cardsplayer;
+            }
+        }
+        public override string ToString()
+        {
+            string result = string.Empty;
+            foreach (var card in list)
+            {
+                result += $"{card}, ";
+            }
+            return $"\nPlayer: {Id}\nCards ({result})";
         }
     }
 }

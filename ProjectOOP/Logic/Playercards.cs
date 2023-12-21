@@ -10,14 +10,20 @@ namespace ProjectOOP.Logic
     public class Playercards
     {
         public List<Cards> Cardsplayer = new List<Cards>();
-        public int Count {  get; set; }
-        public Playercards(int count) 
+        public int Count { get; set; }
+        public Playercards(int count, List<Cards> deck) 
         {
-            throw new NotImplementedException();
+            if (count > 0 && count < 36)
+                Count = count;
+            if (deck.Count > 0 && deck.Count <= 36)
+                for (int i = 0; i < count; i++)
+                    Cardsplayer.Add(CountCards(deck));
         }
-        public void CountCards()
+        public Cards CountCards(List<Cards> deck)
         {
-            throw new NotImplementedException();
+            Cards card = deck[deck.Count - 1];
+            deck.RemoveAt(deck.Count - 1);
+            return card;
         }
     }
 }

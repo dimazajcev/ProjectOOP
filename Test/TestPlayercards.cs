@@ -7,19 +7,26 @@ namespace Test
         [TestMethod]
         public void TestCountLower()
         {
-            Playercards playercards = new Playercards(-1);
-            Assert.ThrowsException<ArgumentException>(() => playercards);
+            Deck deck = new Deck();
+            Playercards playercards = new Playercards(-1, deck.deck);
+            int expected = 0;
+            int actual = playercards.Count;
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestCountUpper()
         {
-            Playercards playercards = new Playercards(36);
-            Assert.ThrowsException<ArgumentException>(() => playercards);
+            Deck deck = new Deck();
+            Playercards playercards = new Playercards(36, deck.deck);
+            int expected = 0;
+            int actual = playercards.Count;
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void TestCountNormal()
         {
-            Playercards playercards = new Playercards(6);
+            Deck deck = new Deck();
+            Playercards playercards = new Playercards(6, deck.deck);
             int expected = 6;
             int actual = playercards.Count;
             Assert.AreEqual(actual, expected);
