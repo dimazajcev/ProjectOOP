@@ -113,6 +113,7 @@ namespace ProjectOOP
                                 Console.WriteLine("Enter the number of cards for the new player:");
                                 int newPlayerCardCount = Convert.ToInt32(Console.ReadLine());
                                 Player newPlayer = new Player(selectedGame.Count + 1, newPlayerCardCount, selectedGame.list);
+                                games[choose - 1].Players.Add(newPlayer);
                                 Console.WriteLine($"New player added: {newPlayer}");
                             }
                             break;
