@@ -8,10 +8,23 @@ using ProjectOOP.Interfaces;
 
 namespace ProjectOOP.Logic
 {
+    public delegate void PlayerCardCountChangedEventHandler(object sender, EventArgs e);
     public class Player: Characteristics, IString
     {
+        private int count;
         public int Id { get; set; }
-        public int Count { get; set; }
+        public int Count 
+        {
+            get { return count; }
+            set
+            {
+                if (value > 0 && value < 36)
+                {
+                    count = value;
+                    OnPlayerCardCountChanged();
+                }
+            } 
+        }
         public List<Cards> list { get; set; }
         public Player(int id, int cards, List<Cards> deck) 
         {
@@ -23,6 +36,11 @@ namespace ProjectOOP.Logic
                 Playercards playercards = new Playercards(cards, deck);
                 list = playercards.Cardsplayer;
             }
+        }
+        public event PlayerCardCountChangedEventHandler PlayerCardCountChanged;
+        protected virtual void OnPlayerCardCountChanged()
+        {
+            PlayerCardCountChanged?.Invoke(this, EventArgs.Empty);
         }
         public override string ToString()
         {
